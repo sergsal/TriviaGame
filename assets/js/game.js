@@ -69,31 +69,6 @@ $(document).ready(function(){
 	var unanswered = 0;
 	var timer = 20;
 
-	function startTimer() {
-			counter = setInterval(decrement, 1000)
-		};
-	function decrement() {
-            // Decrease number by one.
-            timer--;
-            // Show the number in the #show-number tag.
-            $('#timer').html('<h2> Time Remaining: ' + timer + ' seconds</h2>');
-
-            // Once number hits zero...
-            if (timer == 0){
-                // ...run the stop function.
-                stop();
-            }
-        };
-
-        // The stop function
-    function stop (){
-            // Clears our "counter" interval.
-            // We just pass the name of the interval
-            // to the clearInterval function.
-            clearInterval(counter);
-        };
-	
-
 	// game functions */
 	var game = {
 
@@ -141,7 +116,7 @@ $(document).ready(function(){
 			wrongAnswers++;
 			$("#question").empty();
 			$("#choices").empty();	
-			$("#result").html("Wrong! The correct answer is " +questions[currentQuestion].choices[this.correctAnswer]);
+			$("#result").html("Wrong! The correct answer is " +questions[currentQuestion].choices[questions[currentQuestion].correctAnswer]);
 			$("#answerImage").html('<img src =' +questions[currentQuestion].answerImg+'>')
 			setTimeout(game.nextQuestion, 2000);
 		},
@@ -149,7 +124,7 @@ $(document).ready(function(){
 			unanswered++;
 			$("#question").empty();
 			$("#choices").empty();	
-			$("#result").html("You didn't respond in time");
+			$("#result").html("You didn't respond in time the correct answer is "+questions[currentQuestion].choices[questions[currentQuestion].correctAnswer]);
 			$("#answerImage").html('<img src =' +questions[currentQuestion].answerImg+'>')
 			setTimeout(game.nextQuestion, 2000);
 		},
